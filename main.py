@@ -63,14 +63,45 @@ print(f"Game finished in {moves} moves. Thanks for playing!")
 pygame.init()
 screen = pygame.display.set_mode((800, 600))
 
+card_surface = pygame.transform.scale(pygame.image.load(r"C:\Users\djamesh\OneDrive\Pictures\uno2dcard.png"), (75, 105)).convert_alpha()
+card_rect = card_surface.get_rect()
+card_positions = [(400, 300),
+                  (375, 300),
+                  (350, 300),
+                  (325, 300),
+                  (300, 300),
+                  (275, 300),
+                  (250, 300),
+                  (225, 300),]
+    
 
-run = False
+run = True
 while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
+            
+    
 
     screen.fill((255, 255, 255))  # Fill the screen with black
+    
+    mouse_pos = pygame.mouse.get_pos()
+    
+    for card_position in card_positions:
+        screen.blit(card_surface, card_position)
+    for card_position in card_positions:
+        card_rect.x = card_position[0]
+        card_rect.y = card_position[1]
+        if card_rect.collidepoint(mouse_pos):
+            screen.blit(pygame.transform.scale(card_surface, (90, 120)), (card_position[0]-15,  card_position[1]-15))
+            break
+
+    # for card_position in card_positions:     
+    #     if card_surface
+    #         pygame.draw.rect(screen, (200, 200, 200), card, border_radius=5)
+    #         pygame.draw.rect(screen, (150, 150, 150), card, width=2, border_radius=5)
+               
+    
     pygame.display.flip()  # Update the display
     
 pygame.quit()
