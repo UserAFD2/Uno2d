@@ -2,7 +2,7 @@
 
 
 a = Analysis(
-    ['main.py'],
+    ['scripts\\main.py'],
     pathex=[],
     binaries=[],
     datas=[('Uno/individual', 'Uno/individual')],
@@ -35,4 +35,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
+    icon=['Uno\\individual\\back\\card_back.ico'],
 )
